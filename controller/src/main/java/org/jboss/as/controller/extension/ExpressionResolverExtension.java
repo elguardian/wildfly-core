@@ -87,7 +87,7 @@ public interface ExpressionResolverExtension {
      * @throws ExpressionResolver.ExpressionResolutionServerException if some other internal expression resolution failure occurs.
      */
     default String resolveExpression(String expression, CapabilityServiceSupport serviceSupport) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 }

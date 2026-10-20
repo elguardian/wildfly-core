@@ -580,6 +580,10 @@ public abstract class AbstractControllerService implements Service<ModelControll
         return controller;
     }
 
+    protected org.jboss.as.controller.capability.CapabilityServiceSupport getCapabilityServiceSupport() {
+        return new OperationContextImpl.CapabilityServiceSupportImpl(controller.getManagementModel());
+    }
+
     protected ExecutorService getExecutorService() {
         return executorService != null ? executorService.get() : null;
     }

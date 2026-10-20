@@ -2611,10 +2611,10 @@ final class OperationContextImpl extends AbstractOperationContext {
         private boolean done = false;
     }
 
-    private static class CapabilityServiceSupportImpl implements CapabilityServiceSupport {
+    static class CapabilityServiceSupportImpl implements CapabilityServiceSupport {
         private final ManagementModel managementModel;
 
-        private CapabilityServiceSupportImpl(ManagementModel managementModel) {
+        CapabilityServiceSupportImpl(ManagementModel managementModel) {
             this.managementModel = managementModel;
         }
 

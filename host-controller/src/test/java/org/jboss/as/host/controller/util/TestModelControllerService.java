@@ -66,6 +66,10 @@ public abstract class TestModelControllerService extends AbstractControllerServi
         return state;
     }
 
+    public org.jboss.as.controller.capability.CapabilityServiceSupport getCapabilityServiceSupport() {
+        return super.getCapabilityServiceSupport();
+    }
+
     public State getCurrentProcessState() {
         return processState.getState();
     }

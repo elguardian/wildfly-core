@@ -884,6 +884,9 @@ public class DomainModelControllerService extends AbstractControllerService impl
                            //Force the activation of the web console here before starting the servers
                            consoleAvailabilitySupplier.get().setAvailable();
                         }
+                        if (expressionResolver instanceof RuntimeExpressionResolver rte) {
+                            rte.setCapabilityServiceSupport(getCapabilityServiceSupport());
+                        }
                         startServers(true);
                         clearBootingReadOnlyFlag();
                     } else {
