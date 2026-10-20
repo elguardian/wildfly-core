@@ -11,6 +11,7 @@ import org.jboss.as.controller.ExpressionResolver;
 import org.jboss.as.controller.OperationClientException;
 import org.jboss.as.controller.OperationContext;
 import org.jboss.as.controller.OperationFailedException;
+import org.jboss.as.controller.capability.CapabilityServiceSupport;
 
 /**
  * Object that can be used to extend the functionality of an {@link ExpressionResolver} by handling
@@ -69,5 +70,24 @@ public interface ExpressionResolverExtension {
      * @throws ExpressionResolver.ExpressionResolutionServerException if some other internal expression resolution failure occurs.
      */
     String resolveExpression(String expression, OperationContext context);
+
+    /**
+     * Resolve a given simple expression string using a {@link CapabilityServiceSupport}, for use in
+     * contexts where no {@link OperationContext} is active (e.g. during domain server boot preparation
+     * by the Host Controller). Implementations that support resolution in this mode should override this
+     * method; the default returns {@code null} (not supported).
+     *
+     * @param expression     a string that matches {@link #EXTENSION_EXPRESSION_PATTERN} and that does not have
+     *                       any substrings that match that pattern.
+     * @param serviceSupport support object for capability lookups. Will not be {@code null}.
+     * @return a string representing the resolved expression, or {@code null} if {@code expression} is not of a
+     * form understood by this extension or resolution without an {@link OperationContext} is not supported.
+     * @throws ExpressionResolver.ExpressionResolutionUserException   if {@code expression} is a form understood by the plugin but in some
+     *                                             way is unacceptable.
+     * @throws ExpressionResolver.ExpressionResolutionServerException if some other internal expression resolution failure occurs.
+     */
+    default String resolveExpression(String expression, CapabilityServiceSupport serviceSupport) {
+        return null;
+    }
 
 }

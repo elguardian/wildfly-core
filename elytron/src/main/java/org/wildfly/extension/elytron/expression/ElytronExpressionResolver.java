@@ -77,6 +77,12 @@ public class ElytronExpressionResolver implements ExpressionResolverExtension {
         return resolveExpressionInternal(expression, null, serviceSupport);
     }
 
+    @Override
+    public String resolveExpression(String expression, CapabilityServiceSupport serviceSupport) {
+        checkNotNullParam("serviceSupport", serviceSupport);
+        return resolveExpressionInternal(expression, null, serviceSupport);
+    }
+
     private String resolveExpressionInternal(String fullExpression, OperationContext operationContext, CapabilityServiceSupport serviceSupport) {
         assert operationContext == null || serviceSupport == null;
         assert operationContext != null || serviceSupport != null;
